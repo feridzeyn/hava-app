@@ -23,3 +23,37 @@ h1, h2, h3 {
 .chart {
   margin: 20px 0;
 }
+.city-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.city-item {
+  padding: 5px;
+}
+
+.city-button {
+  padding: 10px;
+  background-color: #3a506b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.city-button:hover {
+  background-color: #5bc0be;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

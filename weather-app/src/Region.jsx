@@ -1,10 +1,17 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CitiesComponent from './CitiesComponent'
+import React from 'react';
+import CityList from './CityList'; // Bu sizin faylın adı olacaq
 
-export default class Region extends Component {
-  render() {
+const RegionsAndMapPage = () => {
     return (
-      <Route path="/weather/:city" element={<CitiesComponent />} />
-    )
-  }
-}
+        <div>
+            <h1>Azərbaycan - Bölgələrə Görə Hava Məlumatı</h1>
+
+            {/* Şəhərlərin siyahısı və axtarış */}
+            <CityList />
+
+            {/* Mövcud region və xəritə kodunuz */}
+        </div>
+    );
+};
+
+export default RegionsAndMapPage;
