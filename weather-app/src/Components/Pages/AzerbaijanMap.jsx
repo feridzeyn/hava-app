@@ -1,65 +1,63 @@
 import React, { useState } from 'react';
-import { getData } from '../API/api';
+import { getData } from '../../API/api';
 
 const AzerbaijanMap = () => {
     const [selectedRegion, setSelectedRegion] = useState(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-const handleMouseMove = (e)=>{
-    setMousePosition({x: e.clientX, y: e.clientY})
-    console.log(mousePosition);
-    
-}
+    const handleMouseMove = (e) => {
+        setMousePosition({ x: e.clientX, y: e.clientY })
+    }
 
     const handleMouseEnter = (region) => {
         setSelectedRegion(region);
-    
+
     };
-    const handleMouseLeave = ()=>{
+    const handleMouseLeave = () => {
         setSelectedRegion(null);
     }
-const handleCityClick = (url)=>{
-window.open(url)
-}
-    
-const handleClickWeather = (region)=>{
-    setSelectedRegion(region);
-    console.log(region);
-    
-    getData(region)
-}
+    const handleCityClick = (url) => {
+        window.open(url)
+    }
+
+    const handleClickWeather = (region) => {
+        setSelectedRegion(region);
+        console.log(region);
+
+        getData(region)
+    }
     return (
-        <div>
-   
+        <div className='ml-[500px] mt-[60px]'>
+
             <div>
-                <svg viewBox="0 0 1500 1000" style={{ width: '100%', height: 'auto' }}
+                <svg viewBox="0 0 1700 800" style={{ width: '100%', height: 'auto' }}
                     baseProfile="tiny"
                     stroke="#111827"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="1"
-                >     
+                >
                     <path
                         d="M170.8 151.1l-5.1 2.9-6.7 3.3-4.6 4-3.2 5.5-9.7-0.1-5.4 4 4.3 13.1-1.9 7.9-5.1 5.4-5.2 1.6-5.1 1.4-6.2 8.5-1.9 6.8-2.4-0.7-2.1-2.3 1.5-7.3-1.1-5.3-4.7 0.5-1.6 0.8-0.4-1.8-0.4-7.8-1.7-10.8 0-3.2 2-3.1-1.1-3.7 4.5-14.3-1.2-8.3-0.6-0.2-19.2-2.3-4-1.9-6.9-4.8-7.4-1.7-3.4-2-7.9-7.8-0.7-1.5-0.1-1.5 25.9-21.5 5.5-2 5.6 0.3 11.4 6 2.6 0.5 3.5-0.3 5.6-1.7 2.5 0.4 2.5 2.9 5.6 5.2 24.5 9.6 11.1 2.3 4 1.6 0.2 1.4-2.5 1.3-3.9 1.4-3.8 4.8 4.1 6.4 7.1 6.1 3.2 2z"
-                       
-                         id="AZE1676"
+
+                        id="AZE1676"
                         name="Ağstafa"
                         fill={selectedRegion === 'Ağstafa' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Ağstafa')}
-                        onMouseLeave={()=> handleMouseLeave()}
-                        onClick={ ()=> handleClickWeather('Ağstafa')}
+                        onMouseLeave={() => handleMouseLeave()}
+                        onClick={() => handleClickWeather('Ağstafa')}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
                         d="M223.5 283.3l6.3 4.1 6.1 4.6 4.7 2.9 3.9 3.3-5.6 8.6-6.1 9.2 4.4 6.9 5.7 5 5.7 4.2 0 6.8-7.9 8.7-4.1 11.8-11.9 1.2-11.9-0.9-10.7-2-9.6 3.8-1.5 8.1-1.2 0.4-3.4-0.2-7.2-8 1.4-4 0.1-3.4 1.7-2.5 1.2-4.6 0.1-5.4 1.9-4.5-1.5-4.5-2.3-3.7-2-3.9 3-14.3 12.2-7.5 6.8-9.2 6.8-9.9 6.7-5.5 8.2 4.4z"
-                         id="AZE1677"
+                        id="AZE1677"
                         name="Daşkəsən"
                         fill={selectedRegion === 'Daşkəsən' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Daşkəsən')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
 
-                    
+
                     ></path>
                     <path
                         d="M195 303.5l-12.2 7.5-3 14.3 2 3.9 2.3 3.7 1.5 4.5-1.9 4.5-0.1 5.4-1.2 4.6-1.7 2.5-0.1 3.4-1.4 4-0.2-0.2-39.7-22.6-10.1-9.5-5.5-11.8-1.5-2.6-3.5-2.3-1.6-1.8-0.7-2.4-0.4-5-0.7-2.2-3-3.7-3.4-2.7-3.3-3.3-2.4-5.2 0-9.6 4.3-7.5 6.6-5.6 6.9-3.3 1.2 2.5 0.9 7.4 5 3.2 6.3 0.2 5.3 2.3 3.5 4.8-0.5 6.1 4 2.6 4.1 3.3 4.2 2.1 4.2-4.4 1.2-6.9 0.9-10.5-0.1-9.8-0.7-9.9 2.2-9.9 3.2 4.2 3.1 3.8 2.1 3.7 1.1 4.6 5.3 9 7.3 6 6.4 6.1 3.9 7-0.6 5 0.5 5.3-1.2 2.6 1.2 2.6z m-62.2-14.5l2.3-5.9-4.5-2.5-2.4-0.3-2.5 0-2.4 0.7-2.1 1.6-1 2.2-0.4 2.3 0.4 2.4 1 2.1 5.9 1.8 5.7-4.4z"
@@ -67,7 +65,7 @@ const handleClickWeather = (region)=>{
                         name="Gədəbəy"
                         fill={selectedRegion === 'Gədəbəy' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Gədəbəy')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -76,7 +74,7 @@ const handleClickWeather = (region)=>{
                         name="Göygöl"
                         fill={selectedRegion === 'Göygöl' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Göygöl')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -85,7 +83,7 @@ const handleClickWeather = (region)=>{
                         name="Gəncə"
                         fill={selectedRegion === 'Gəncə' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Gəncə')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -94,7 +92,7 @@ const handleClickWeather = (region)=>{
                         name="Goranboy"
                         fill={selectedRegion === 'Goranboy' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Goranboy')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -103,7 +101,7 @@ const handleClickWeather = (region)=>{
                         name="Kəlbəcər"
                         fill={selectedRegion === 'Kəlbəcər' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Kəlbəcər')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -112,7 +110,7 @@ const handleClickWeather = (region)=>{
                         name="Mingəçevir"
                         fill={selectedRegion === 'Mingəçevir' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Mingəçevir')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -121,7 +119,7 @@ const handleClickWeather = (region)=>{
                         name="Qazax"
                         fill={selectedRegion === 'Qazax' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Qazax')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -130,7 +128,7 @@ const handleClickWeather = (region)=>{
                         name="Şəmkir"
                         fill={selectedRegion === 'Şəmkir' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şəmkir')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -139,7 +137,7 @@ const handleClickWeather = (region)=>{
                         name="Samux"
                         fill={selectedRegion === 'Samux' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Samux')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -148,7 +146,7 @@ const handleClickWeather = (region)=>{
                         name="Tovuz"
                         fill={selectedRegion === 'Tovuz' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Tovuz')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -157,7 +155,7 @@ const handleClickWeather = (region)=>{
                         name="Yevlax"
                         fill={selectedRegion === 'Yevlax' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Yevlax')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -166,7 +164,7 @@ const handleClickWeather = (region)=>{
                         name="Bakı"
                         fill={selectedRegion === 'Bakı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Bakı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -175,7 +173,7 @@ const handleClickWeather = (region)=>{
                         name="Abşeron"
                         fill={selectedRegion === 'Abşeron' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Abşeron')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -184,7 +182,7 @@ const handleClickWeather = (region)=>{
                         name="Ağdam"
                         fill={selectedRegion === 'Ağdam' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Ağdam')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -193,7 +191,7 @@ const handleClickWeather = (region)=>{
                         name="Ağdaş"
                         fill={selectedRegion === 'DaşkAğdaşəsən' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Ağdaş')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -202,7 +200,7 @@ const handleClickWeather = (region)=>{
                         name="Ağsu"
                         fill={selectedRegion === 'Ağsu' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Ağsu')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -211,7 +209,7 @@ const handleClickWeather = (region)=>{
                         name="Hacıqabul"
                         fill={selectedRegion === 'Hacıqabul' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Hacıqabul')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -220,7 +218,7 @@ const handleClickWeather = (region)=>{
                         name="Astara"
                         fill={selectedRegion === 'Astara' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Astara')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -229,7 +227,7 @@ const handleClickWeather = (region)=>{
                         name="Bərdə"
                         fill={selectedRegion === 'Bərdə' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Bərdə')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -238,7 +236,7 @@ const handleClickWeather = (region)=>{
                         name="Beyləqan"
                         fill={selectedRegion === 'Beyləqan' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Beyləqan')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -247,7 +245,7 @@ const handleClickWeather = (region)=>{
                         name="Biləsuvar"
                         fill={selectedRegion === 'Biləsuvar' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Biləsuvar')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -256,7 +254,7 @@ const handleClickWeather = (region)=>{
                         name="Cəbrayıl"
                         fill={selectedRegion === 'Cəbrayıl' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Cəbrayıl')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -265,7 +263,7 @@ const handleClickWeather = (region)=>{
                         name="Cəlilabad"
                         fill={selectedRegion === 'Cəlilabad' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Cəlilabad')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -274,7 +272,7 @@ const handleClickWeather = (region)=>{
                         name="Şabran"
                         fill={selectedRegion === 'Şabran' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şabran')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -283,7 +281,7 @@ const handleClickWeather = (region)=>{
                         name="Füzuli"
                         fill={selectedRegion === 'Füzuli' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Füzuli')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -292,7 +290,7 @@ const handleClickWeather = (region)=>{
                         name="Göyçay"
                         fill={selectedRegion === 'Göyçay' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Göyçay')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -301,7 +299,7 @@ const handleClickWeather = (region)=>{
                         name="İmişli"
                         fill={selectedRegion === 'İmişli' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('İmişli')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -310,7 +308,7 @@ const handleClickWeather = (region)=>{
                         name="İsmayıllı"
                         fill={selectedRegion === 'İsmayıllı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('İsmayıllı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -319,7 +317,7 @@ const handleClickWeather = (region)=>{
                         name="Kürdəmir"
                         fill={selectedRegion === 'Kürdəmir' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Kürdəmir')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -328,7 +326,7 @@ const handleClickWeather = (region)=>{
                         name="Lənkəran"
                         fill={selectedRegion === 'Lənkəran' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Lənkəran')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -337,7 +335,7 @@ const handleClickWeather = (region)=>{
                         name="Masallı"
                         fill={selectedRegion === 'Masallı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Masallı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -346,7 +344,7 @@ const handleClickWeather = (region)=>{
                         name="Lerik"
                         fill={selectedRegion === 'Lerik' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Lerik')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -355,7 +353,7 @@ const handleClickWeather = (region)=>{
                         name="Neftçala"
                         fill={selectedRegion === 'Neftçala' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Neftçala')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -364,7 +362,7 @@ const handleClickWeather = (region)=>{
                         name="Qobustan"
                         fill={selectedRegion === 'Qobustan' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Qobustan')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -373,7 +371,7 @@ const handleClickWeather = (region)=>{
                         name="Siyəzən"
                         fill={selectedRegion === 'Siyəzən' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Siyəzən')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -382,7 +380,7 @@ const handleClickWeather = (region)=>{
                         name="Saatlı"
                         fill={selectedRegion === 'Saatlı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Saatlı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -391,7 +389,7 @@ const handleClickWeather = (region)=>{
                         name="Sabirabad"
                         fill={selectedRegion === 'Sabirabad' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Sabirabad')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -400,7 +398,7 @@ const handleClickWeather = (region)=>{
                         name="Salyan"
                         fill={selectedRegion === 'Salyan' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Salyan')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -409,7 +407,7 @@ const handleClickWeather = (region)=>{
                         name="Şamaxı"
                         fill={selectedRegion === 'Şamaxı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şamaxı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -418,7 +416,7 @@ const handleClickWeather = (region)=>{
                         name="Sumqayıt"
                         fill={selectedRegion === 'Sumqayıt' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Sumqayıt')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -427,7 +425,7 @@ const handleClickWeather = (region)=>{
                         name="Ucar"
                         fill={selectedRegion === 'Ucar' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Ucar')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -436,7 +434,7 @@ const handleClickWeather = (region)=>{
                         name="Xızı"
                         fill={selectedRegion === 'Xızı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Xızı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -445,7 +443,7 @@ const handleClickWeather = (region)=>{
                         name="Yardımlı"
                         fill={selectedRegion === 'Yardımlı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Yardımlı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -454,7 +452,7 @@ const handleClickWeather = (region)=>{
                         name="Zərdab"
                         fill={selectedRegion === 'Zərdab' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Zərdab')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -463,7 +461,7 @@ const handleClickWeather = (region)=>{
                         name="Ağcabədi"
                         fill={selectedRegion === 'Ağcabədi' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Ağcabədi')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -472,7 +470,7 @@ const handleClickWeather = (region)=>{
                         name="Balakən"
                         fill={selectedRegion === 'Balakən' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Balakən')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -481,7 +479,7 @@ const handleClickWeather = (region)=>{
                         name="Qəbələ"
                         fill={selectedRegion === 'Qəbələ' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Qəbələ')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -490,7 +488,7 @@ const handleClickWeather = (region)=>{
                         name="Oğuz"
                         fill={selectedRegion === 'Oğuz' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Oğuz')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -499,7 +497,7 @@ const handleClickWeather = (region)=>{
                         name="Qax"
                         fill={selectedRegion === 'Qax' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Qax')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -508,7 +506,7 @@ const handleClickWeather = (region)=>{
                         name="Şəki"
                         fill={selectedRegion === 'Şəki' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şəki')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -517,7 +515,7 @@ const handleClickWeather = (region)=>{
                         name="Quba"
                         fill={selectedRegion === 'Quba' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Quba')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -526,7 +524,7 @@ const handleClickWeather = (region)=>{
                         name="Qusar"
                         fill={selectedRegion === 'Qusar' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Qusar')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -535,7 +533,7 @@ const handleClickWeather = (region)=>{
                         name="Xaçmaz"
                         fill={selectedRegion === 'Xaçmaz' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Xaçmaz')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -544,7 +542,7 @@ const handleClickWeather = (region)=>{
                         name="Zaqatala"
                         fill={selectedRegion === 'Zaqatala' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Zaqatala')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -553,7 +551,7 @@ const handleClickWeather = (region)=>{
                         name="Xocavənd"
                         fill={selectedRegion === 'Xocavənd' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Xocavənd')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -562,7 +560,7 @@ const handleClickWeather = (region)=>{
                         name="Laçın"
                         fill={selectedRegion === 'Laçın' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Laçın')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -571,7 +569,7 @@ const handleClickWeather = (region)=>{
                         name="Qubadlı"
                         fill={selectedRegion === 'Qubadlı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Qubadlı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -580,7 +578,7 @@ const handleClickWeather = (region)=>{
                         name="Şuşa"
                         fill={selectedRegion === 'Şuşa' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şuşa')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -589,7 +587,7 @@ const handleClickWeather = (region)=>{
                         name="Tərtər"
                         fill={selectedRegion === 'Tərtər' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Tərtər')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -598,7 +596,7 @@ const handleClickWeather = (region)=>{
                         name="Xocalı"
                         fill={selectedRegion === 'Xocalı' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Xocalı')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -607,7 +605,7 @@ const handleClickWeather = (region)=>{
                         name="Zəngilan"
                         fill={selectedRegion === 'Zəngilan' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Zəngilan')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -616,7 +614,7 @@ const handleClickWeather = (region)=>{
                         name="Sədərək"
                         fill={selectedRegion === 'Sədərək' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Sədərək')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -625,7 +623,7 @@ const handleClickWeather = (region)=>{
                         name="Ordubad"
                         fill={selectedRegion === 'Ordubad' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Ordubad')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -634,7 +632,7 @@ const handleClickWeather = (region)=>{
                         name="Şərur"
                         fill={selectedRegion === 'Şərur' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şərur')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -643,7 +641,7 @@ const handleClickWeather = (region)=>{
                         name="Babək"
                         fill={selectedRegion === 'Babək' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Babək')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -652,7 +650,7 @@ const handleClickWeather = (region)=>{
                         name="Culfa"
                         fill={selectedRegion === 'Culfa' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Culfa')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -661,7 +659,7 @@ const handleClickWeather = (region)=>{
                         name="Naxçıvan"
                         fill={selectedRegion === 'Naxçıvan' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Naxçıvan')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -670,7 +668,7 @@ const handleClickWeather = (region)=>{
                         name="Şahbuz"
                         fill={selectedRegion === 'Şahbuz' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şahbuz')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -679,7 +677,7 @@ const handleClickWeather = (region)=>{
                         name="Xankəndi"
                         fill={selectedRegion === 'Xankəndi' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Xankəndi')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -688,7 +686,7 @@ const handleClickWeather = (region)=>{
                         name="Naftalan"
                         fill={selectedRegion === 'Naftalan' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Naftalan')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -697,7 +695,7 @@ const handleClickWeather = (region)=>{
                         name="Lənkəran"
                         fill={selectedRegion === 'Lənkəran' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Lənkəran')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -706,7 +704,7 @@ const handleClickWeather = (region)=>{
                         name="Şirvan"
                         fill={selectedRegion === 'Şirvan' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şirvan')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -715,7 +713,7 @@ const handleClickWeather = (region)=>{
                         name="Şəki"
                         fill={selectedRegion === 'Şəki' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şəki')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -724,7 +722,7 @@ const handleClickWeather = (region)=>{
                         name="Şuşa"
                         fill={selectedRegion === 'Şuşa' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Şuşa')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -733,7 +731,7 @@ const handleClickWeather = (region)=>{
                         name="Yevlax"
                         fill={selectedRegion === 'Yevlax' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Yevlax')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
                     <path
@@ -742,18 +740,18 @@ const handleClickWeather = (region)=>{
                         name="Kəngərli"
                         fill={selectedRegion === 'Kəngərli' ? 'white' : 'gray'}
                         onMouseEnter={() => handleMouseEnter('Kəngərli')}
-                        onMouseLeave={()=> handleMouseLeave()}
+                        onMouseLeave={() => handleMouseLeave()}
                         onMouseMove={handleMouseMove}
                     ></path>
 
-                  
+
                 </svg>
             </div>
-            {selectedRegion && <div 
-            className='tooltip'
-            style={{top: mousePosition.y+15, left: mousePosition.x +15}}> {selectedRegion}</div>
+            {selectedRegion && <div
+                className='tooltip'
+                style={{ top: mousePosition.y + 15, left: mousePosition.x + 15 }}> {selectedRegion}</div>
             }
-         
+
         </div>
     );
 };
