@@ -1,5 +1,5 @@
 import React from 'react'
-import AzerbaijanMap from './Components/Map'
+import AzerbaijanMap from './Components/AzerbaijanMap'
 
 export default function App() {
   return (
