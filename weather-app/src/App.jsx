@@ -1,18 +1,20 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MapPage from './MapPage';
-import WeatherPage from './WeatherPage';
-import Region from './Region';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AzerbaijanMap from "./Components/Pages/AzerbaijanMap";
+import Default from "./Components/Layouts/Default";
+import Home from "./Components/Pages/Home";
 
-const App = () => {
+
+export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MapPage />} />
-        <Route path="/weather/:city" element={<WeatherPage />} />
-        <Route path="/weather/:city" element={<Region />} />
-      </Routes>
-    </Router>
+    <div>
+      <Router>
+        <Routes>
+          <Route element={<Default />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/azerbaijanMap" element={<AzerbaijanMap />} />
+          </Route>
+        </Routes>
+      </Router>
+    </div>
   );
-};
-
-export default App;
+}
