@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { getData } from "../API/api";
 
+
+
+
+
 const AzerbaijanMap = () => {
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -29,7 +33,9 @@ const AzerbaijanMap = () => {
   };
   return (
     <div className="ml-[500px] mt-[60px]">
+       
       <div>
+        
         <svg
           viewBox="0 0 1700 800"
           style={{ width: "100%", height: "auto" }}

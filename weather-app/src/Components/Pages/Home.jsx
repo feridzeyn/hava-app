@@ -1,12 +1,12 @@
-import React from "react";
-import Navbar from "../Navbar";
-import SearchInput from "../SearchInput";
+import React from 'react';
+import Navbar from '../Navbar';
+import City from '../CitiesComponents'
 
 export default function Home() {
-  return (
-    <div>
-      <Navbar />
-      <SearchInput />
-    </div>
-  );
+    return (
+        <div>
+          <Navbar/>
+          <City/>
+        </div>
+    )
 }

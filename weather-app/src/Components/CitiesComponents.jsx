@@ -1,26 +1,75 @@
 import { useState } from "react";
+import '../assets/cities.css';
+
 
 const CityComponent = () => {
   const cities = [
-    "Abşeron",
-    "Ağcabədi",
     "Ağdam",
     "Ağdaş",
+    "Ağcabədi",
     "Ağstafa",
     "Ağsu",
-    "Astara",
-    "Babək",
+    "Astara",    
+    "Ağdərə",
+    "Babək",                       
     "Bakı",
     "Balakən",
-    "Beyləqan",
     "Bərdə",
-    "İsmayıllı",
+    "Beyləqan",
+    "Bilasuvar",
+    "Daşkəsən",
+    "Şabran",
+    "Füzuli",
+    "Gədəbəy",
     "Gəncə",
+    "Goranboy",
+    "Göyçay",
+    "Göygöl",
+   "Hacıqabul",
+    "İmişli",
+    "İsmayilli",
+    "Cabrayil",
+    "Culfa"   ,
+    "Kəlbəcər",
+    "Xaçmaz",
+    "Xankəndi",
+    "Xocavend",
+    "Xırdalan",
+    "Kürdəmir",
     "Lənkəran",
+    "Lerik"  ,
+    "Masallı",
     "Mingəçevir",
+    "Naxçıvan",
+    "Naftalan",
+    "Neftçala",
+    "Oğhuz",
+    "Ordubad",
+    "Qəbələ",
+    "Qax",
+    "Qazax",
+    "Quba",
+    "Qubadlı",
+    "Qusar",
+    "Saatlı ",
+    "Sabirabad",
+    "Şahbuz",
     "Şəki",
+    "Şamakhi",
+    "Şamkir",
+    "Şərur",
+    "Şirvan",
+    "Siyəzən",
+    "Şuşa",
     "Sumqayıt",
+    "Tərtər",
+    "Tovuz",
+    "Ucar",
+    "Yardımlı",
+    "Yevlax",
     "Zaqatala",
+    "Zərdab" ,               
+    "Zəngilan",
     // Daha çox şəhəri buraya əlavə edin
   ];
 
@@ -38,13 +87,14 @@ const CityComponent = () => {
   };
 
   return (
-    <div>
-      <h2>Bütün Azərbaycan Şəhərləri</h2>
+    <div className="homeabout">
+     
 
       {/* Axtarış inputu */}
       <input
+        className="homeinp"
         type="text"
-        placeholder="Şəhər axtarın..."
+        placeholder="Bölgə axtarın"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -53,11 +103,16 @@ const CityComponent = () => {
       <div className="city-list">
         {filteredCities.map((city, index) => (
           <div key={index} className="city-item">
+            
+              <div key={index} className="index">
+               {index + 1}
+             </div>
             <button
               className="city-button"
               onClick={() => handleCityClick(city)} // Şəhər kliklənəndə handleCityClick çağrılır
             >
               {city}
+              
             </button>
           </div>
         ))}
