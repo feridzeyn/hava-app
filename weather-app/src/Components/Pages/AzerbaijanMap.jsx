@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { getData } from '../../API/api';
 
@@ -757,3 +758,4 @@ const AzerbaijanMap = () => {
 };
 
 export default AzerbaijanMap;
+

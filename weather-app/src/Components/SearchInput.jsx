@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 export default function SearchInput() {
@@ -7,4 +8,5 @@ export default function SearchInput() {
 
     </div>
   )
+
 }
