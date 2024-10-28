@@ -1,5 +1,5 @@
 {
-  "name": "weather-apps",
+  "name": "weather-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,16 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.1.5",
+    "@vitejs/plugin-react-swc": "^3.7.1",
     "apexcharts": "^3.54.1",
     "axios": "^1.7.7",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.4",
-    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-leaflet": "^4.2.1",
-    "react-router-dom": "^6.27.0"
+    "react-router-dom": "^6.27.0",
+    "tailwindcss": "^3.4.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
