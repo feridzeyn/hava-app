@@ -1,11 +1,12 @@
 import React from 'react'
 import Navbar from '../Navbar'
-import SearchInput from '../SearchInput'
+import CityComponent from '../CitiesComponents'
+
 
 export default function Home() {
     return (
-        <div>
-          <SearchInput/>
+        <div className='mt-5'>
+        <CityComponent/>
         </div>
     )
 }
