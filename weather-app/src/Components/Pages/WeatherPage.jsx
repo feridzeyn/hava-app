@@ -24,9 +24,6 @@ const WeatherPage = () => {
       const daysOfWeek = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Cümə ertəsi"];
       const dayIndex = date.getDay();
       setDayName(daysOfWeek[dayIndex])
-
-        console.log(date);
-
       const hours = date.getHours().toString().padStart(2, '0')
       const minutes = date.getMinutes().toString().padStart(2, '0')
       setTime(`${hours}:${minutes}`)
@@ -77,8 +74,6 @@ const WeatherPage = () => {
         reading.dt_txt.includes("12:00:00")
       );
       setForecastData(dailyForecast);
-      console.log(dailyForecast);
-
       const temperatures = dailyForecast.map(data => data.main.temp);
       const humidities = dailyForecast.map(data => data.main.humidity);
       const weatherDescriptions = dailyForecast.map(data => data.wind.speed);
@@ -188,7 +183,7 @@ setDefaultDay(index)
           {forecastData.map((day, index) => (
 
 
-            <button onClick={()=>selectDay(index)} key={index} className={defaultDay===index&& 'active'}>
+            <button onClick={()=>selectDay(index)} key={index} className={defaultDay===index ? 'active' : undefined}>
               {index === 0 ? <h3 className='text-white'>{dayName}</h3> : <h3 className='text-white'>{UpcomingDays()[index - 1]}</h3>}
 
 
