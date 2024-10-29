@@ -1,7 +1,6 @@
-
 import { useState } from "react";
-import '../assets/cities.css';
-
+import "../../src/cities.css";
+import { useNavigate } from "react-router-dom";
 
 const CityComponent = () => {
   const cities = [
@@ -10,9 +9,9 @@ const CityComponent = () => {
     "Ağcabədi",
     "Ağstafa",
     "Ağsu",
-    "Astara",    
+    "Astara",
     "Ağdərə",
-    "Babək",                       
+    "Babək",
     "Bakı",
     "Balakən",
     "Bərdə",
@@ -26,11 +25,11 @@ const CityComponent = () => {
     "Goranboy",
     "Göyçay",
     "Göygöl",
-   "Hacıqabul",
+    "Hacıqabul",
     "İmişli",
     "İsmayilli",
     "Cabrayil",
-    "Culfa"   ,
+    "Culfa",
     "Kəlbəcər",
     "Xaçmaz",
     "Xankəndi",
@@ -38,7 +37,7 @@ const CityComponent = () => {
     "Xırdalan",
     "Kürdəmir",
     "Lənkəran",
-    "Lerik"  ,
+    "Lerik",
     "Masallı",
     "Mingəçevir",
     "Naxçıvan",
@@ -69,11 +68,11 @@ const CityComponent = () => {
     "Yardımlı",
     "Yevlax",
     "Zaqatala",
-    "Zərdab" ,               
+    "Zərdab",
     "Zəngilan",
     // Daha çox şəhəri buraya əlavə edin
   ];
-
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
   // Şəhərləri filtrləmək üçün funksiya
@@ -82,15 +81,17 @@ const CityComponent = () => {
   );
 
   // Şəhərə klikləmə funksiyası (hazırda sadəcə console-a yazacaq)
-  const handleCityClick = (city) => {
+
+  const handleCityClick = ({ city }) => {
+    console.log(city);
+
     console.log(`Seçilmiş şəhər: ${city}`);
+    navigate(`${city}`);
     // Burada seçilmiş şəhərin hava məlumatlarını göstərə bilərsiniz
   };
 
   return (
     <div className="homeabout">
-     
-
       {/* Axtarış inputu */}
       <input
         className="homeinp"
@@ -104,16 +105,14 @@ const CityComponent = () => {
       <div className="city-list">
         {filteredCities.map((city, index) => (
           <div key={index} className="city-item">
-            
-              <div key={index} className="index">
-               {index + 1}
-             </div>
+            <div key={index} className="index">
+              {index + 1}
+            </div>
             <button
               className="city-button"
-              onClick={() => handleCityClick(city)} // Şəhər kliklənəndə handleCityClick çağrılır
+              onClick={() => handleCityClick({ city })} // Şəhər kliklənəndə handleCityClick çağrılır
             >
               {city}
-              
             </button>
           </div>
         ))}
