@@ -1,8 +1,5 @@
 
-.t-h{
-    color: #ffff;
-    text-align: center;
-}
+
 .l-h{
     display: flex;
     flex-wrap: wrap;
@@ -15,7 +12,7 @@
     background: transparent #0000;
     transition: all .5s ease;
     font-weight: 600;
-    z-index: 99;
+
     
 }
 .r-l , .c-l{
@@ -62,8 +59,8 @@
    text-align: center;
     align-items: center;
     justify-content: space-evenly;
-   margin: 18px;
-   padding: 15px;
+   margin: 10px;
+   padding: 10px;
    border-radius: 40px;
    transition: 1s ease-in-out;
    border: 1px solid #fff;
@@ -89,6 +86,7 @@
     background-color: #4036df;
     cursor: pointer;
     color: #fff;
+    transition: 1s ease-in-out;
     
 }
 .city-item:hover{
@@ -100,7 +98,8 @@
 .index{
     background-color: #4036df;
     font-size: 14px;
-    padding: 10px;
+    width: 50px;
+    padding: 15px;
     border-radius: 50px;
     transition: all ease;
 

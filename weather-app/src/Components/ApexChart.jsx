@@ -1,151 +1,126 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Chart from 'react-apexcharts';
 
 const WeatherPage = () => {
+  console.log("hello")
   const { city } = useParams();
-  const [currentWeather, setCurrentWeather] = useState(null);
+  console.log(`sHERIN ADI: ${city}`);
+  
+  const [hourlyData, setHourlyData] = useState([]);
   const [forecastData, setForecastData] = useState([]);
-  
-  // Dinamik qrafik seçimi üçün state
-  const [selectedChart, setSelectedChart] = useState('temperature');
-  
-  const [temperatureChartData, setTemperatureChartData] = useState({
-    series: [{ name: 'Temperature (°C)', data: [] }],
-    options: {
-      chart: { height: 350, type: 'line' },
-      title: { text: '5 Günlük Temperatur Proqnozu', align: 'center' },
-      xaxis: { categories: [] },
-      yaxis: { title: { text: 'Temperature (°C)' }, min: -10, max: 40 },
-    },
-  });
-  
-  const [humidityChartData, setHumidityChartData] = useState({
-    series: [{ name: 'Humidity (%)', data: [] }],
-    options: {
-      chart: { height: 350, type: 'line' },
-      title: { text: '5 Günlük Rütubət Proqnozu', align: 'center' },
-      xaxis: { categories: [] },
-      yaxis: { title: { text: 'Humidity (%)' }, min: 0, max: 100 },
-    },
-  });
 
-  const [weatherDescriptionChartData, setWeatherDescriptionChartData] = useState({
-    series: [{ name: 'Weather Description', data: [] }],
-    options: {
-      chart: { height: 350, type: 'line' },
-      title: { text: '5 Günlük Hava Vəziyyəti', align: 'center' },
-      xaxis: { categories: [] },
-      yaxis: { title: { text: 'Weather Description' } },
-    },
-  });
-
-  const API_KEY = 'bee597e2f4c0c24c218f0a97162fc5a7'; // OpenWeather API açarınızı daxil edin
-
+  const API_KEY = 'bee597e2f4c0c24c218f0a97162fc5a7'; // OpenWeather API açarınızı buraya daxil edin
+  console.log(API_KEY);
+  
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const currentResponse = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
-        );
-        setCurrentWeather(currentResponse.data);
-
-        const forecastResponse = await axios.get(
+        // 3 saatlıq məlumatlar üçün sorğu
+        const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
         );
 
-        const dailyForecast = forecastResponse.data.list.filter(reading =>
-          reading.dt_txt.includes("12:00:00")
+        const data = response.data.list;
+
+        // 3 saatlıq temperatur, rütubət və hava vəziyyəti məlumatlarını götürmək
+        const hourlyTemps = data.map(item => item.main.temp);
+        const hourlyHumidity = data.map(item => item.main.humidity);
+        const hourlyDescriptions = data.map(item => item.weather[0].description);
+        const hourlyTimes = data.map(item =>
+          new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         );
+
+        setHourlyData({
+          temperature: { data: hourlyTemps, times: hourlyTimes },
+          humidity: { data: hourlyHumidity, times: hourlyTimes },
+          description: { data: hourlyDescriptions, times: hourlyTimes },
+        });
+
+        // 5 günlük proqnoz məlumatlarını saxlamaq
+        const dailyForecast = data.filter((_, index) => index % 8 === 0).slice(0, 5);
         setForecastData(dailyForecast);
 
-        const temperatures = dailyForecast.map(data => data.main.temp);
-        const humidities = dailyForecast.map(data => data.main.humidity);
-        const weatherDescriptions = dailyForecast.map(data => data.weather[0].description);
-        const dates = dailyForecast.map(data =>
-          new Date(data.dt_txt).toLocaleDateString()
-        );
-
-        setTemperatureChartData({
-          series: [{ name: 'Temperature (°C)', data: temperatures }],
-          options: {
-            ...temperatureChartData.options,
-            xaxis: { categories: dates },
-          },
-        });
-
-        setHumidityChartData({
-          series: [{ name: 'Humidity (%)', data: humidities }],
-          options: {
-            ...humidityChartData.options,
-            xaxis: { categories: dates },
-          },
-        });
-
-        setWeatherDescriptionChartData({
-          series: [{ name: 'Weather Description', data: weatherDescriptions.map(desc => {
-            if (desc.includes("rain")) return 10;
-            if (desc.includes("clear")) return 20;
-            if (desc.includes("cloud")) return 15;
-            return 5; // Default dəyər
-          }) }],
-          options: {
-            ...weatherDescriptionChartData.options,
-            xaxis: { categories: dates },
-          },
-        });
       } catch (error) {
-        console.error("Error fetching weather data: ", error);
+        console.error("Error fetching weather data:", error);
       }
     };
 
     fetchWeatherData();
   }, [city]);
 
-  // Seçilmiş qrafik növünə görə render
-  const renderChart = () => {
-    switch (selectedChart) {
-      case 'humidity':
-        return <Chart options={humidityChartData.options} series={humidityChartData.series} type="line" height={350} />;
-      case 'weather':
-        return <Chart options={weatherDescriptionChartData.options} series={weatherDescriptionChartData.series} type="line" height={350} />;
-      case 'temperature':
-      default:
-        return <Chart options={temperatureChartData.options} series={temperatureChartData.series} type="line" height={350} />;
-    }
-  };
-
   return (
     <div>
       <h1>{city} Üzrə Hava Məlumatları</h1>
-      {currentWeather && (
-        <div>
-          <h3>Hazırki Temperatur: {currentWeather.main.temp}°C</h3>
-          <p>Hava: {currentWeather.weather[0].description}</p>
-          <p>Rütubət: {currentWeather.main.humidity}%</p>
-          <p>Küləyin Sürəti: {currentWeather.wind.speed} m/s</p>
-        </div>
-      )}
+      <div>
+        <h2>3 Saatlıq Proqnoz</h2>
 
-      <div className="chart-controls">
-        <button onClick={() => setSelectedChart('temperature')}>Temperatur</button>
-        <button onClick={() => setSelectedChart('humidity')}>Rütubət</button>
-        <button onClick={() => setSelectedChart('weather')}>Hava Vəziyyəti</button>
+        {/* Temperatur üçün ApexChart */}
+        <Chart
+          options={{
+            chart: { type: 'area', height: 350 },
+            xaxis: { categories: hourlyData.temperature?.times },
+            title: { text: '3 Saatlıq Temperatur' },
+            yaxis: { title: { text: '°C' } }
+          }}
+          series={[{ name: 'Temperature', data: hourlyData.temperature?.data }]}
+          type="area"
+          height={350}
+        />
+
+        {/* Rütubət üçün ApexChart */}
+        <Chart
+          options={{
+            chart: { type: 'area', height: 350 },
+            xaxis: { categories: hourlyData.humidity?.times },
+            title: { text: '3 Saatlıq Rütubət' },
+            yaxis: { title: { text: '%' } }
+          }}
+          series={[{ name: 'Humidity', data: hourlyData.humidity?.data }]}
+          type="area"
+          height={350}
+        />
+
+        {/* Hava vəziyyəti üçün ApexChart */}
+        <Chart
+          options={{
+            chart: { type: 'area', height: 350 },
+            xaxis: { categories: hourlyData.description?.times },
+            title: { text: '3 Saatlıq Hava Vəziyyəti' },
+            yaxis: { title: { text: 'Status' } },
+            markers: {
+              size: 4,
+              colors: ['#FFA41B'],
+              strokeColor: '#00E396',
+              strokeWidth: 2,
+            }
+          }}
+          series={[
+            {
+              name: 'Weather',
+              data: hourlyData.description?.data.map(desc => {
+                if (desc.includes("rain")) return 1;
+                if (desc.includes("clear")) return 2;
+                if (desc.includes("cloud")) return 3;
+                return 0;
+              })
+            }
+          ]}
+          type="area"
+          height={350}
+        />
       </div>
-
-      <div className="chart">
-        {renderChart()}
-      </div>
-
-      <h2>Beş Günlük Hava Proqnozu</h2>
-      <div className="forecast">
+       
+      {/* 5 Günlük Hava Proqnozu Kartları */}
+      <h2>5 Günlük Proqnoz</h2>
+      <div className="forecast-cards">
         {forecastData.map((day, index) => (
-          <div key={index} className="forecast-day">
-            <h4>{new Date(day.dt_txt).toLocaleDateString()}</h4>
+          <div key={index} className="forecast-card">
+            <h4>{new Date(day.dt * 1000).toLocaleDateString()}</h4>
             <p>Temperature: {day.main.temp}°C</p>
-            <p>Weather: {day.weather[0].description}</p>
             <p>Humidity: {day.main.humidity}%</p>
+            <p>Weather: {day.weather[0].description}</p>
           </div>
         ))}
       </div>
