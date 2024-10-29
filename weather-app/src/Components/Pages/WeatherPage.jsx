@@ -16,16 +16,20 @@ const WeatherPage = () => {
   const API_KEY = 'bee597e2f4c0c24c218f0a97162fc5a7';
 
   useEffect(function getDayName() {
+    if(forecastData.length){
+
+   
     const date = new Date();
     const daysOfWeek = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Cümə ertəsi"];
     const dayIndex = date.getDay();
     setDayName(daysOfWeek[dayIndex])
 
+console.log(date);
 
     const hours = date.getHours().toString().padStart(2, '0')
     const minutes = date.getMinutes().toString().padStart(2, '0')
     setTime(`${hours}:${minutes}`)
-  }, [])
+  } }, [forecastData])
 
 
   
