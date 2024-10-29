@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
-
+import mapArray from '../../Data/map.json'
 import { useNavigate } from 'react-router-dom';
 const AzerbaijanMap = () => {
     const [selectedRegion, setSelectedRegion] = useState(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleMouseMove = (e) => {
         setMousePosition({ x: e.clientX, y: e.clientY })
@@ -20,13 +20,41 @@ const navigate = useNavigate();
     }
     const handleCityClick = (cityName) => {
         setSelectedRegion(cityName);
-       navigate(`/weather/${cityName}`)
+        navigate(`/weather/${cityName}`)
     }
+
     return (
         <div className='ml-[200px] mt-[60px]'>
 
             <div>
                 <svg viewBox="0 0 1400 800" style={{ width: '100%', height: 'auto' }}
+                    baseProfile="tiny"
+                    stroke="#111827"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                >
+                    {mapArray.map(city => (
+                        <path
+                            key={city.id}
+                            d={city.icon}
+                            id={city.id}
+                            name={city.name}
+                            fill={selectedRegion === city.name ? 'white' : 'gray'}
+                            onMouseEnter={() => handleMouseEnter(city.name)}
+                            onMouseLeave={() => handleMouseLeave()}
+                            onClick={() => {
+                                handleCityClick(city.name)
+                            }}
+                            onMouseMove={handleMouseMove}
+                        ></path>
+                    ))}
+
+
+
+
+                </svg>
+                {/* <svg viewBox="0 0 1400 800" style={{ width: '100%', height: 'auto' }}
                     baseProfile="tiny"
                     stroke="#111827"
                     strokeLinecap="round"
@@ -974,7 +1002,7 @@ const navigate = useNavigate();
                     ></path>
 
 
-                </svg>
+                </svg> */}
             </div>
             {selectedRegion && <div
                 className='tooltip'
