@@ -2,40 +2,27 @@ import React from "react";
 
 // Azərbaycan dilində həftənin günləri və aylar
 const days = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
-const months = [
-  "Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun",
-  "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"
-];
 
 // Tarixi Azərbaycan dilində formatlayan funksiya
-const formatAzerbaijaniDate = (date) => {
+ const formatAzerbaijaniDate = (date) => {
+  
   const dayName = days[date.getDay()];
-  const day = date.getDate();
+
   return `${dayName}`;
 };
 
 // Bugünkü tarixi və qarşıdakı 5 günü göstərən komponent
-const UpcomingDays = () => {
+export const UpcomingDays = () => {
   const today = new Date();
 
   // Gələcək 5 günü hesablamaq üçün massiv yaradırıq
   const daysArray = Array.from({ length: 5 }, (_, i) => {
     const day = new Date(today);
-    day.setDate(today.getDay() + i);
+    day.setDate(today.getDay() +i);
     return formatAzerbaijaniDate(day);
   });
-
-  return (
-    <div>
-      <ul>
-        {daysArray.map((date, index) => (
-      
-          
-          <li key={index}>{date}</li>
-        ))}
-      </ul>
-    </div>
-  );
+return daysArray;
+ 
 };
 
-export default UpcomingDays;
+
