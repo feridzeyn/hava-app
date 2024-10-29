@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../assets/cities.css";
+import "/src/cities.css";
 import { useNavigate } from "react-router-dom";
-// import ApexCharts from "apexcharts";
+
 
 
 const CityComponent = () => {
