@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 
 import React, { useState } from 'react';
 import mapArray from '../../Data/map.json'
@@ -7,9 +8,9 @@ const AzerbaijanMap = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const navigate = useNavigate();
 
-    const handleMouseMove = (e) => {
-        setMousePosition({ x: e.clientX, y: e.clientY })
-    }
+  const handleMouseMove = (e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
 
     const handleMouseEnter = (region) => {
         setSelectedRegion(region);
@@ -1014,4 +1015,3 @@ const AzerbaijanMap = () => {
 };
 
 export default AzerbaijanMap;
-

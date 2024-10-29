@@ -35,5 +35,5 @@ navigate(`/weather/${e.target.value}`)
  </select>
 </div>
     </div>
-  )
+  );
 }

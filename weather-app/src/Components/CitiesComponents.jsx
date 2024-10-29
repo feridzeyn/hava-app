@@ -12,13 +12,11 @@ const CityComponent = () => {
   const filteredCities = cities.filter((city) =>
     city.toLowerCase().includes(searchTerm.toLowerCase())
   );
- 
 
   // Şəhərə klikləmə funksiyası (hazırda sadəcə console-a yazacaq)
-  
-  const handleCityClick = ({city}) => {
-    
-    console.log(city)
+
+  const handleCityClick = ({ city }) => {
+    console.log(city);
 
     console.log(`Seçilmiş şəhər: ${city}`);
     navigate(`${city}`);
@@ -45,7 +43,7 @@ const CityComponent = () => {
             </div>
             <button
               className="city-button"
-              onClick={() => handleCityClick({city})} // Şəhər kliklənəndə handleCityClick çağrılır
+              onClick={() => handleCityClick({ city })} // Şəhər kliklənəndə handleCityClick çağrılır
             >
               {city}
             </button>

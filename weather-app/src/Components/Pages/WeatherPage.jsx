@@ -25,7 +25,7 @@ const WeatherPage = () => {
       const dayIndex = date.getDay();
       setDayName(daysOfWeek[dayIndex])
 
-console.log(date);
+        console.log(date);
 
       const hours = date.getHours().toString().padStart(2, '0')
       const minutes = date.getMinutes().toString().padStart(2, '0')
@@ -37,32 +37,32 @@ console.log(date);
 
 
   // Dinamik qrafik seçimi üçün state
-  const [selectedChart, setSelectedChart] = useState('temperature');
+  const [selectedChart, setSelectedChart] = useState("temperature");
 
   const [temperatureChartData, setTemperatureChartData] = useState({
-    series: [{ name: 'Temperature (°C)', data: [] }],
+    series: [{ name: "Temperature (°C)", data: [] }],
     options: {
-      chart: { height: 350, type: 'area' },
+      chart: { height: 350, type: "area" },
 
-      yaxis: { title: { text: 'Temperature (°C)' }, min: -10, max: 40 },
+      yaxis: { title: { text: "Temperature (°C)" }, min: -10, max: 40 },
     },
   });
 
   const [humidityChartData, setHumidityChartData] = useState({
-    series: [{ name: 'Humidity (%)', data: [] }],
+    series: [{ name: "Humidity (%)", data: [] }],
     options: {
-      chart: { height: 350, type: 'area' },
+      chart: { height: 350, type: "area" },
       xaxis: { categories: [] },
-      yaxis: { title: { text: 'Humidity (%)' }, min: 0, max: 100 },
+      yaxis: { title: { text: "Humidity (%)" }, min: 0, max: 100 },
     },
   });
 
   const [windChartData, setWindChartData] = useState({
-    series: [{ name: 'Wind (km/s)', data: [] }],
+    series: [{ name: "Wind (km/s)", data: [] }],
     options: {
-      chart: { height: 350, type: 'area' },
+      chart: { height: 350, type: "area" },
       xaxis: { categories: [] },
-      yaxis: { title: { text: 'Wind speed' } },
+      yaxis: { title: { text: "Wind speed" } },
     },
   });
 
@@ -123,29 +123,61 @@ console.log(date);
   // Seçilmiş qrafik növünə görə render
   const renderChart = () => {
     switch (selectedChart) {
-      case 'humidity':
-        return <Chart options={humidityChartData.options} series={humidityChartData.series} type="line" height={350} />;
-      case 'weather':
-        return <Chart options={windChartData.options} series={windChartData.series} type="line" height={350} />;
-      case 'temperature':
+      case "humidity":
+        return (
+          <Chart
+            options={humidityChartData.options}
+            series={humidityChartData.series}
+            type="line"
+            height={350}
+          />
+        );
+      case "weather":
+        return (
+          <Chart
+            options={windChartData.options}
+            series={windChartData.series}
+            type="line"
+            height={350}
+          />
+        );
+      case "temperature":
       default:
-        return <Chart options={temperatureChartData.options} series={temperatureChartData.series} type="area" height={350} />;
+        return (
+          <Chart
+            options={temperatureChartData.options}
+            series={temperatureChartData.series}
+            type="area"
+            height={350}
+          />
+        );
     }
   };
 const selectDay = (index)=>{
 setDefaultDay(index)
 }
   return (
-    <div className='bg-[#283042]'>
+    <div className="bg-[#283042]">
       <WeatherHeader />
       <div className="container p-5">
         <CurrentInfo forecastData={forecastData} cityName={cityName} dayName={dayName} time={time} defaultDay={defaultDay} />
 
         <div className="chart-controls text-white mb-[50px] mt-14">
-          <button className='mr-3' onClick={() => setSelectedChart('temperature')}>Temperatur</button>
-          <button className='mr-3' onClick={() => setSelectedChart('humidity')}>Rütubət</button>
-          <button className='mr-3' onClick={() => setSelectedChart('weather')}>Külək</button>
-          <button onClick={() => setSelectedChart('weather')}>Hiss edilən</button>
+          <button
+            className="mr-3"
+            onClick={() => setSelectedChart("temperature")}
+          >
+            Temperatur
+          </button>
+          <button className="mr-3" onClick={() => setSelectedChart("humidity")}>
+            Rütubət
+          </button>
+          <button className="mr-3" onClick={() => setSelectedChart("weather")}>
+            Külək
+          </button>
+          <button onClick={() => setSelectedChart("weather")}>
+            Hiss edilən
+          </button>
         </div>
 
         <div className="chart">
@@ -160,8 +192,13 @@ setDefaultDay(index)
               {index === 0 ? <h3 className='text-white'>{dayName}</h3> : <h3 className='text-white'>{UpcomingDays()[index - 1]}</h3>}
 
 
-              <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt="Weather icon" />
-              <h4>{Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}</h4>
+              <img
+                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                alt="Weather icon"
+              />
+              <h4>
+                {Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}
+              </h4>
 
 
 
@@ -174,9 +211,4 @@ setDefaultDay(index)
   );
 };
 
-
 export default WeatherPage;
-
-
-
-
