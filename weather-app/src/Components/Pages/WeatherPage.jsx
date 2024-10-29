@@ -4,6 +4,8 @@ import axios from 'axios';
 import Chart from 'react-apexcharts';
 
 import WeatherHeader from '../WeatherHeader';
+import CurrentInfo from '../UI/CurrentInfo';
+import UpcomingDays from '../../utilities/UpcomingDays';
 
 const WeatherPage = () => {
   const { cityName } = useParams();
@@ -25,6 +27,9 @@ const WeatherPage = () => {
     setTime(`${hours}:${minutes}`)
   }, [])
 
+
+
+
   // Dinamik qrafik seçimi üçün state
   const [selectedChart, setSelectedChart] = useState('temperature');
 
@@ -40,18 +45,18 @@ const WeatherPage = () => {
   const [humidityChartData, setHumidityChartData] = useState({
     series: [{ name: 'Humidity (%)', data: [] }],
     options: {
-      chart: { height: 350, type: 'line' },
+      chart: { height: 350, type: 'area' },
       xaxis: { categories: [] },
       yaxis: { title: { text: 'Humidity (%)' }, min: 0, max: 100 },
     },
   });
 
-  const [weatherDescriptionChartData, setWeatherDescriptionChartData] = useState({
-    series: [{ name: 'Weather Description', data: [] }],
+  const [windChartData, setWindChartData] = useState({
+    series: [{ name: 'Wind (km/s)', data: [] }],
     options: {
-      chart: { height: 350, type: 'line' },
+      chart: { height: 350, type: 'area' },
       xaxis: { categories: [] },
-      yaxis: { title: { text: 'Weather Description' } },
+      yaxis: { title: { text: 'Wind speed' } },
     },
   });
 
@@ -71,10 +76,11 @@ const WeatherPage = () => {
           reading.dt_txt.includes("12:00:00")
         );
         setForecastData(dailyForecast);
+console.log(dailyForecast);
 
         const temperatures = dailyForecast.map(data => data.main.temp);
         const humidities = dailyForecast.map(data => data.main.humidity);
-        const weatherDescriptions = dailyForecast.map(data => data.weather[0].description);
+        const weatherDescriptions = dailyForecast.map(data => data.wind.speed);
         const dates = dailyForecast.map(data =>
           new Date(data.dt_txt).toLocaleDateString()
         );
@@ -95,15 +101,10 @@ const WeatherPage = () => {
           },
         });
 
-        setWeatherDescriptionChartData({
-          series: [{ name: 'Weather Description', data: weatherDescriptions.map(desc => {
-            if (desc.includes("rain")) return 10;
-            if (desc.includes("clear")) return 20;
-            if (desc.includes("cloud")) return 15;
-            return 5; // Default dəyər
-          }) }],
+        setWindChartData({
+          series: [{ name: 'Weather Description', data: weatherDescriptions }],
           options: {
-            ...weatherDescriptionChartData.options,
+            ...windChartData.options,
             xaxis: { categories: dates },
           },
         });
@@ -121,7 +122,7 @@ const WeatherPage = () => {
       case 'humidity':
         return <Chart options={humidityChartData.options} series={humidityChartData.series} type="line" height={350} />;
       case 'weather':
-        return <Chart options={weatherDescriptionChartData.options} series={weatherDescriptionChartData.series} type="line" height={350} />;
+        return <Chart options={windChartData.options} series={windChartData.series} type="line" height={350} />;
       case 'temperature':
       default:
         return <Chart options={temperatureChartData.options} series={temperatureChartData.series} type="area" height={350} />;
@@ -132,28 +133,9 @@ const WeatherPage = () => {
     <div className='bg-[#283042]'>
       <WeatherHeader />
       <div className="container p-5">
-        {forecastData[0] && (
+        <CurrentInfo forecastData={forecastData} cityName={cityName} dayName={dayName} time={time}/>
 
-
-          <div>
-            <div className='flex justify-between items-center text-center	'>
-              <div className='flex items-center'>
-                <img src={`https://openweathermap.org/img/wn/${forecastData[0].weather[0].icon}@2x.png`} />
-                <h5 className='text-white font-semibold text-[20px] ml-2'>{Math.round(forecastData[0].main.temp)}°C</h5>
-              </div>
-
-              <div>
-                <h1 className='text-white text-[26px] font-semibold'>{cityName}</h1>
-                <h3 className='text-[#7d828c] font-semibold'> {dayName} - {time}</h3>
-                <h5 className='text-[#7d828c] font-semibold'>{forecastData[0].weather[0].description}</h5>
-              </div>
-
-            </div>
-
-          </div>
-        )}
-
-        <div className="chart-controls text-white mb-10">
+        <div className="chart-controls text-white mb-[50px] mt-14">
           <button className='mr-3' onClick={() => setSelectedChart('temperature')}>Temperatur</button>
           <button className='mr-3' onClick={() => setSelectedChart('humidity')}>Rütubət</button>
           <button className='mr-3' onClick={() => setSelectedChart('weather')}>Külək</button>
@@ -175,9 +157,8 @@ const WeatherPage = () => {
               <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt="Weather icon" />
               <h4>{Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}</h4>
 
-              {
-                // console.log(day)
-              }
+             <UpcomingDays/>
+     
             </button>
           ))}
         
