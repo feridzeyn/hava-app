@@ -28,6 +28,7 @@ const WeatherPage = () => {
   }, [])
 
 
+  
 
 
   // Dinamik qrafik seçimi üçün state

@@ -2,15 +2,11 @@ import React from "react";
 
 // Azərbaycan dilində həftənin günləri və aylar
 const days = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
-const months = [
-  "Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun",
-  "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"
-];
+
 
 // Tarixi Azərbaycan dilində formatlayan funksiya
 const formatAzerbaijaniDate = (date) => {
   const dayName = days[date.getDay()];
-  const day = date.getDate();
   return `${dayName}`;
 };
 

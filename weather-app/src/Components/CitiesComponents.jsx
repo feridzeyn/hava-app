@@ -80,10 +80,7 @@ const CityComponent = () => {
   const filteredCities = cities.filter((city) =>
     city.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  // Şəhərləri filtrləmək üçün funksiya
-  const filteredCities = cities.filter((city) =>
-    city.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+ 
 
   // Şəhərə klikləmə funksiyası (hazırda sadəcə console-a yazacaq)
   
