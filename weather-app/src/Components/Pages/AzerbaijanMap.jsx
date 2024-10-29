@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import React, { useState } from 'react';
 import mapArray from '../../Data/map.json'
 import { useNavigate } from 'react-router-dom';
