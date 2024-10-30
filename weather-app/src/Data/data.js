@@ -64,5 +64,5 @@ export const cities = [
     "Yevlax",
     "Zaqatala",
     "Zərdab",
-    "Zəngilan",
+    "Zangilan",
   ];

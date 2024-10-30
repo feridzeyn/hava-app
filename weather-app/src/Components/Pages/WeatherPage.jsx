@@ -540,9 +540,8 @@ const WeatherPage = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const forecastResponse = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${API_KEY}&lang=az`
-        );
+        const forecastResponse = await getWeatherData(cityName)
+        
         // console.log(forecastResponse);
         setForecatHourly(forecastResponse.data.list);
 
@@ -600,7 +599,7 @@ const WeatherPage = () => {
     fetchWeatherData();
 
     
-  });
+  }), [cityName];
 
   const fetchWeatherData = async () => {
     try {
