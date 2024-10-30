@@ -17,12 +17,22 @@
   }
   .active{
     background-color: #4036df;
-    color: white;
+  color: white;
+  font-weight: 700;
     padding: 10px;
     border-radius: 20px;
+}
+.activeDays{
+  background-color: gray;
+  color: white;
+  padding: 10px 30px;
+    border-radius: 20px;
+    font-weight: 700;
 }
 .container {
   max-width: 1200px;
   margin: auto;
 
 }
+
+
