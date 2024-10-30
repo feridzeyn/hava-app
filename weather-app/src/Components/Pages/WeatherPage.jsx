@@ -183,7 +183,7 @@ setDefaultDay(index)
           {forecastData.map((day, index) => (
 
 
-            <button onClick={()=>selectDay(index)} key={index} className={defaultDay===index ? 'active' : undefined}>
+            <button onClick={()=>selectDay(index)} key={index} className={defaultDay===index ? 'activeDays' : undefined}>
               {index === 0 ? <h3 className='text-white'>{dayName}</h3> : <h3 className='text-white'>{UpcomingDays()[index - 1]}</h3>}
 
 
@@ -191,7 +191,7 @@ setDefaultDay(index)
                 src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt="Weather icon"
               />
-              <h4>
+              <h4 className='text-white'>
                 {Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}
               </h4>
 
