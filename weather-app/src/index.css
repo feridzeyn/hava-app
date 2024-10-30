@@ -3,36 +3,38 @@
 @tailwind utilities;
 
 .tooltip {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    pointer-events: none; /* İmleç tooltip'in üzerine gelse bile etkileşime geçmez */
-    font-size: 14px;
-  }
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  /* İmleç tooltip'in üzerine gelse bile etkileşime geçmez */
+  font-size: 14px;
+}
 
-  body{
-    background-color: #111827;
-  }
-  .active{
-    background-color: #4036df;
+body {
+  background-color: #111827;
+}
+
+.active {
+  background-color: #4036df;
   color: white;
   font-weight: 700;
-    padding: 10px;
-    border-radius: 20px;
+  padding: 10px;
+  border-radius: 20px;
 }
-.activeDays{
+
+.activeDays {
   background-color: gray;
   color: white;
   padding: 10px 30px;
-    border-radius: 20px;
-    font-weight: 700;
+  border-radius: 20px;
+  font-weight: 700;
 }
+
 .container {
   max-width: 1200px;
   margin: auto;
 
 }
-
-

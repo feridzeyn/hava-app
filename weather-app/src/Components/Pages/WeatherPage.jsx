@@ -553,7 +553,7 @@ const WeatherPage = () => {
 
         const temperatures = dailyForecast.map((data) => data.main.temp);
         const humidities = dailyForecast.map((data) => data.main.humidity);
-        const weatherDescriptions = dailyForecast.map(
+        const wind = dailyForecast.map(
           (data) => data.wind.speed
         );
         const feels = dailyForecast.map((data) => data.main.feel_like)
@@ -585,7 +585,7 @@ const WeatherPage = () => {
         });
 
         setWindChartData({
-          series: [{ name: "Weather Description", data: weatherDescriptions }],
+          series: [{ name: "Wind km/s", data: wind }],
           options: {
             ...windChartData.options,
             xaxis: { categories: dates },
@@ -614,7 +614,7 @@ const WeatherPage = () => {
       setForecastData(dailyForecast);
       const temperatures = dailyForecast.map(data => data.main.temp);
       const humidities = dailyForecast.map(data => data.main.humidity);
-      const weatherDescriptions = dailyForecast.map(data => data.wind.speed);
+      const wind = dailyForecast.map(data => data.wind.speed);
       const dates = dailyForecast.map(data =>
         new Date(data.dt_txt).toLocaleDateString()
       );
@@ -636,7 +636,7 @@ const WeatherPage = () => {
       });
 
       setWindChartData({
-        series: [{ name: 'Weather Description', data: weatherDescriptions }],
+        series: [{ name: 'Wind (km/s)', data: wind }],
         options: {
           ...windChartData.options,
           xaxis: { categories: dates },
@@ -751,7 +751,7 @@ setDefaultDay(index)
               </h4>
 
 
-              <UpcomingDays />
+             
             </button>
           ))}
         </div>
