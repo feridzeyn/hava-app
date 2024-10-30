@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "/src/cities.css";
 import { useNavigate } from "react-router-dom";
 
@@ -74,6 +75,14 @@ const CityComponent = () => {
     "Zəngilan",
     // Daha çox şəhəri buraya əlavə edin
   ];
+
+import "../../src/cities.css";
+import { useNavigate } from "react-router-dom";
+import { cities } from "../Data/data";
+
+const CityComponent = () => {
+ 
+
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -83,6 +92,7 @@ const CityComponent = () => {
   );
 
   // Şəhərə klikləmə funksiyası (hazırda sadəcə console-a yazacaq)
+
   
   const handleCityClick = ({city}) => {
     
@@ -90,6 +100,7 @@ const CityComponent = () => {
 
     console.log(`Seçilmiş şəhər: ${city}`);
     navigate(`apexchart/${city}`);
+
     // Burada seçilmiş şəhərin hava məlumatlarını göstərə bilərsiniz
   };
 
@@ -113,7 +124,9 @@ const CityComponent = () => {
             </div>
             <button
               className="city-button"
+
               onClick={() => handleCityClick({city})} // Şəhər kliklənəndə handleCityClick çağrılır
+
             >
               {city}
             </button>

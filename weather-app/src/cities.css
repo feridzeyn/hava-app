@@ -1,4 +1,8 @@
-.l-h {
+
+
+
+.l-h{
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -12,37 +16,41 @@
     font-weight: 600;
 
 
+    
 }
+.r-l , .c-l{
 
-.r-l,
-.c-l {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
 }
 
-.l-h li {
+
+.l-h li{
+
     padding: 15px;
     align-items: center;
 }
 
 
 
-.homeinp {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 500px;
-    padding: 13px;
-    margin: auto;
-    color: #fff;
-    background-color: #111827;
-    border: 1px solid #ffff;
-    border-radius: 5px;
+
+.homeinp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  padding: 13px;
+  margin: auto;
+  color: #fff;
+  background-color: #111827;
+  border: 1px solid #ffff;
+  border-radius: 5px;
 }
 
-.city-list {
-    display: flex;
+.city-list{
+    display:  flex;
+
     flex-direction: row;
     flex-wrap: wrap;
     flex-grow: 4;
@@ -50,27 +58,29 @@
     align-items: center;
     padding: 20px;
 
+   
 }
 
 
 
-.city-item {
-    display: flex;
-    text-align: center;
+.city-item{
+   display: flex;
+   text-align: center;
     align-items: center;
     justify-content: space-evenly;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 40px;
-    transition: 1s ease-in-out;
-    border: 1px solid #fff;
-    transition: all ease;
+   margin: 18px;
+   padding: 15px;
+   border-radius: 40px;
+   transition: 1s ease-in-out;
+   border: 1px solid #fff;
+   transition: all ease;
 }
 
 
-.city-button {
+.city-button{
     display: flex;
-    align-items: center;
+    align-items:center;
+
     justify-content: center;
     color: #fff;
     background-color: #111827;
@@ -83,57 +93,38 @@
 
 }
 
-.city-button:hover {
+.city-button:hover{
     background-color: #4036df;
     cursor: pointer;
     color: #fff;
-    transition: 1s ease-in-out;
-
+    
 }
+.city-item:hover{
 
-.city-item:hover {
     background-color: #4036df;
     cursor: pointer;
     color: #fff;
 }
 
-.index {
+
+.index{
     background-color: #4036df;
     font-size: 14px;
-    width: 50px;
-    padding: 15px;
+    padding: 10px;
+
     border-radius: 50px;
     transition: all ease;
 
 }
 
-.index:hover {
-    color: #4036df;
-    cursor: pointer;
-    background-color: #fff;
+.index:hover{
+   color: #4036df;
+   cursor: pointer;
+   background-color: #fff;
 }
-
-.forecast {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.forecast-day {
-    margin: 10px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 150px;
-}
-
-.chart {
-    margin: 20px 0;
-}
-
 @media screen and (max-width: 768px) {
-
-    .homeabout {
+    
+    .homeabout{
         scroll-behavior: smooth;
     }
 
@@ -142,38 +133,37 @@
         grid-template-columns: 1fr;
     }
 
-    .homeinp {
+    .homeinp{
         width: 350px;
     }
+    .city-button{
 
-    .city-button {
         padding: 15px 150px;
     }
 
 }
 
 @media screen and (min-width:768) and (max-width: 1024px) {
-    .homeabout {
+    .homeabout{
         scroll-behavior: smooth;
     }
-
     .city-list {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-
+       
     }
+    .city-item{
 
-    .city-item {
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .homeinp {
+    .homeinp{
         width: 350px;
     }
+    .city-button{
 
-    .city-button {
         padding: 15px 50px;
     }
 }
