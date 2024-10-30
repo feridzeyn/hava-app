@@ -1,6 +1,8 @@
 
 
+
 .l-h{
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -13,18 +15,23 @@
     transition: all .5s ease;
     font-weight: 600;
 
+
     
 }
 .r-l , .c-l{
+
     color: #fff;
     text-decoration: none;
     font-size: 16px;
 }
 
+
 .l-h li{
+
     padding: 15px;
     align-items: center;
 }
+
 
 
 
@@ -43,12 +50,14 @@
 
 .city-list{
     display:  flex;
+
     flex-direction: row;
     flex-wrap: wrap;
     flex-grow: 4;
     justify-content: center;
     align-items: center;
     padding: 20px;
+
    
 }
 
@@ -71,6 +80,7 @@
 .city-button{
     display: flex;
     align-items:center;
+
     justify-content: center;
     color: #fff;
     background-color: #111827;
@@ -82,6 +92,7 @@
     transition: all ease;
 
 }
+
 .city-button:hover{
     background-color: #4036df;
     cursor: pointer;
@@ -89,19 +100,23 @@
     
 }
 .city-item:hover{
+
     background-color: #4036df;
     cursor: pointer;
     color: #fff;
 }
 
+
 .index{
     background-color: #4036df;
     font-size: 14px;
     padding: 10px;
+
     border-radius: 50px;
     transition: all ease;
 
 }
+
 .index:hover{
    color: #4036df;
    cursor: pointer;
@@ -112,18 +127,22 @@
     .homeabout{
         scroll-behavior: smooth;
     }
+
     .city-list {
         display: grid;
         grid-template-columns: 1fr;
     }
+
     .homeinp{
         width: 350px;
     }
     .city-button{
+
         padding: 15px 150px;
     }
 
 }
+
 @media screen and (min-width:768) and (max-width: 1024px) {
     .homeabout{
         scroll-behavior: smooth;
@@ -134,14 +153,17 @@
        
     }
     .city-item{
+
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     .homeinp{
         width: 350px;
     }
     .city-button{
+
         padding: 15px 50px;
     }
 }

@@ -1,10 +1,88 @@
 import { useState } from "react";
+
+import "/src/cities.css";
+import { useNavigate } from "react-router-dom";
+
+
+
+const CityComponent = () => {
+  const cities = [
+    "Ağdam",
+    "Ağdaş",
+    "Ağcabədi",
+    "Ağstafa",
+    "Ağsu",
+    "Astara",
+    "Ağdərə",
+    "Babək",
+    "Bakı",
+    "Balakən",
+    "Bərdə",
+    "Beyləqan",
+    "Bilasuvar",
+    "Daşkəsən",
+    "Şabran",
+    "Füzuli",
+    "Gədəbəy",
+    "Gəncə",
+    "Goranboy",
+    "Göyçay",
+    "Göygöl",
+    "Hacıqabul",
+    "İmişli",
+    "İsmayilli",
+    "Cabrayil",
+    "Culfa",
+    "Kəlbəcər",
+    "Xaçmaz",
+    "Xankəndi",
+    "Xocavend",
+    "Xırdalan",
+    "Kürdəmir",
+    "Lənkəran",
+    "Lerik",
+    "Masallı",
+    "Mingəçevir",
+    "Naxçıvan",
+    "Naftalan",
+    "Neftçala",
+    "Oğhuz",
+    "Ordubad",
+    "Qəbələ",
+    "Qax",
+    "Qazax",
+    "Quba",
+    "Qubadlı",
+    "Qusar",
+    "Saatlı ",
+    "Sabirabad",
+    "Şahbuz",
+    "Şəki",
+    "Şamakhi",
+    "Şamkir",
+    "Şərur",
+    "Şirvan",
+    "Siyəzən",
+    "Şuşa",
+    "Sumqayıt",
+    "Tərtər",
+    "Tovuz",
+    "Ucar",
+    "Yardımlı",
+    "Yevlax",
+    "Zaqatala",
+    "Zərdab",
+    "Zəngilan",
+    // Daha çox şəhəri buraya əlavə edin
+  ];
+
 import "../../src/cities.css";
 import { useNavigate } from "react-router-dom";
 import { cities } from "../Data/data";
 
 const CityComponent = () => {
  
+
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -15,11 +93,14 @@ const CityComponent = () => {
 
   // Şəhərə klikləmə funksiyası (hazırda sadəcə console-a yazacaq)
 
-  const handleCityClick = ({ city }) => {
-    console.log(city);
+  
+  const handleCityClick = ({city}) => {
+    
+    console.log(city)
 
     console.log(`Seçilmiş şəhər: ${city}`);
-    navigate(`${city}`);
+    navigate(`apexchart/${city}`);
+
     // Burada seçilmiş şəhərin hava məlumatlarını göstərə bilərsiniz
   };
 
@@ -43,7 +124,9 @@ const CityComponent = () => {
             </div>
             <button
               className="city-button"
-              onClick={() => handleCityClick({ city })} // Şəhər kliklənəndə handleCityClick çağrılır
+
+              onClick={() => handleCityClick({city})} // Şəhər kliklənəndə handleCityClick çağrılır
+
             >
               {city}
             </button>
