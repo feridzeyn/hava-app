@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 
@@ -537,69 +537,6 @@ const WeatherPage = () => {
     },
   });
 
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        const forecastResponse = await getWeatherData(cityName)
-        
-        // console.log(forecastResponse);
-        setForecatHourly(forecastResponse.data.list);
-
-        const dailyForecast = forecastResponse.data.list.filter((reading) =>
-          reading.dt_txt.includes("12:00:00")
-        );
-        setForecastData(dailyForecast);
-        console.log(dailyForecast);
-
-        const temperatures = dailyForecast.map((data) => data.main.temp);
-        const humidities = dailyForecast.map((data) => data.main.humidity);
-        const wind = dailyForecast.map(
-          (data) => data.wind.speed
-        );
-        const feels = dailyForecast.map((data) => data.main.feel_like)
-        const dates = dailyForecast.map((data) =>
-          new Date(data.dt_txt).toLocaleDateString()
-        );
-        setfeelChartData({
-          series: [{ name: "Feels temperature (°C)", data: feels }],
-          options: {
-            ...feelChartData.options,
-            xaxis: { categories: dates },
-          },
-        });
-
-        setTemperatureChartData({
-          series: [{ name: "Temperature (°C)", data: temperatures }],
-          options: {
-            ...temperatureChartData.options,
-            xaxis: { categories: dates },
-          },
-        });
-
-        setHumidityChartData({
-          series: [{ name: "Humidity (%)", data: humidities }],
-          options: {
-            ...humidityChartData.options,
-            xaxis: { categories: dates },
-          },
-        });
-
-        setWindChartData({
-          series: [{ name: "Wind km/s", data: wind }],
-          options: {
-            ...windChartData.options,
-            xaxis: { categories: dates },
-          },
-        });
-      } catch (error) {
-        console.error("Error fetching weather data: ", error);
-      }
-    };
-
-    fetchWeatherData();
-
-    
-  }), [cityName];
 
   const fetchWeatherData = async () => {
     try {
@@ -618,7 +555,7 @@ const WeatherPage = () => {
       const dates = dailyForecast.map(data =>
         new Date(data.dt_txt).toLocaleDateString()
       );
-
+      const feels = dailyForecast.map((data) => data.main.feels_like);
       setTemperatureChartData({
         series: [{ name: 'Temperature (°C)', data: temperatures }],
         options: {
@@ -626,7 +563,13 @@ const WeatherPage = () => {
           xaxis: { categories: dates },
         },
       });
-
+      setfeelChartData({
+        series: [{ name: "Feels temperature (°C)", data: feels }],
+        options: {
+          ...feelChartData.options,
+          xaxis: { categories: dates },
+        },
+      });
       setHumidityChartData({
         series: [{ name: 'Humidity (%)', data: humidities }],
         options: {
@@ -725,7 +668,7 @@ setDefaultDay(index)
             Külək
           </button>
 
-          <button onClick={() => setSelectedChart("feels_like")}>
+          <button onClick={() => setSelectedChart("feels")}>
 
             Hiss edilən
           </button>
