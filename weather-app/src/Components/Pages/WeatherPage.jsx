@@ -37,38 +37,493 @@ const WeatherPage = () => {
   const [selectedChart, setSelectedChart] = useState("temperature");
 
   const [temperatureChartData, setTemperatureChartData] = useState({
-    series: [{ name: "Temperature (°C)", data: [] }],
+    
     options: {
-      chart: { height: 350, type: "area" },
+      chart: {
+        height: 950,
+        type: "area",
+        animations: {
+          enabled: false,
+          easing: "easeinout",
+          speed: 800,
+        },
+        toolbar: {
+          show: false,
+        },
+        dropShadow: {
+          enabled: true,
+        },
+        zoom: {
+          enabled: false,
+        },
+      },
+      noData: {
+        text: "loading",
+      },
+      tooltip: {
+        marker: {
+          show: false,
+        },
+        fixed: {
+          enabled: false,
+          // position: "bottomLeft",
+          // offsetX: 20,
+          // offsetY: -20,
+        },
+      },
 
-      yaxis: { title: { text: "Temperature (°C)" }, min: -10, max: 40 },
+      grid: {
+        show: false,
+      },
+
+      plotOptions: {
+        area: {
+          fillTo: "end",
+        },
+      },
+
+      yaxis: {
+        show: true,
+        labels: {
+          show: false,
+        },
+      },
+
+      stroke: {
+        width: 2,
+        colors: [], // CHANGE
+      },
+      series: [
+        {
+          name: "Temperature (°C)", 
+          data: setTemperatureChartData, //CHANGE
+        },
+      ],
+
+      xaxis: {
+        categories: [],
+        axisBorder: {
+          height: 0,
+        },
+        axisTicks: {
+          height: 0,
+        },
+        labels: {
+          style: {
+            colors: [],
+          },
+        },
+      },
+
+      markers: {
+        colors: ["#fff"],
+        shape: "circle",
+        radius: 1,
+      },
+
+      dataLabels: {
+        enabled: true,
+        offsetY: -10,
+        style: {
+          fontSize: "10px",
+          fontFamily: "Arial, Helvetica, sans-serif",
+          fontWeight: 200,
+          colors: ["transparent"],
+        },
+        background: {
+          borderWidth: 0,
+        },
+      },
+
+      title: {
+        margin: 0,
+        offsetX: 10,
+        style: {
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      },
+
+      fill: {
+        colors: [], // CHANGE
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0.5,
+          opacityFrom: 0.5,
+          opacityTo: 0.1,
+          stops: [0, 100],
+        },
+      },
     },
   });
 
   const [humidityChartData, setHumidityChartData] = useState({
-    series: [{ name: "Humidity (%)", data: [] }],
+    series: [{ name: "Humidity (%)", }],
     options: {
-      chart: { type: "area" },
-      xaxis: { categories: [] },
-      yaxis: { title: { text: "Humidity (%)" }, show: true },
-      plotOptions:{area:{feelTo:'end'}}
+      chart: {
+        height: 950,
+        type: "area",
+        animations: {
+          enabled: false,
+          easing: "easeinout",
+          speed: 800,
+        },
+        toolbar: {
+          show: false,
+        },
+        dropShadow: {
+          enabled: true,
+        },
+        zoom: {
+          enabled: false,
+        },
+      },
+      noData: {
+        text: "loading",
+      },
+      tooltip: {
+        marker: {
+          show: false,
+        },
+        fixed: {
+          enabled: false,
+          // position: "bottomLeft",
+          // offsetX: 20,
+          // offsetY: -20,
+        },
+      },
+
+      grid: {
+        show: false,
+      },
+
+      plotOptions: {
+        area: {
+          fillTo: "end",
+        },
+      },
+
+      yaxis: {
+        show: true,
+        labels: {
+          show: false,
+        },
+      },
+
+      stroke: {
+        width: 2,
+        colors: [], // CHANGE
+      },
+      series: [
+        {
+
+          data: setHumidityChartData, //CHANGE
+        },
+      ],
+
+      xaxis: {
+        categories: [],
+        axisBorder: {
+          height: 0,
+        },
+        axisTicks: {
+          height: 0,
+        },
+        labels: {
+          style: {
+            colors: [],
+          },
+        },
+      },
+
+      markers: {
+        colors: ["#fff"],
+        shape: "circle",
+        radius: 1,
+      },
+
+      dataLabels: {
+        enabled: true,
+        offsetY: -10,
+        style: {
+          fontSize: "10px",
+          fontFamily: "Arial, Helvetica, sans-serif",
+          fontWeight: 200,
+          colors: ["transparent"],
+        },
+        background: {
+          borderWidth: 0,
+        },
+      },
+
+      title: {
+        margin: 0,
+        offsetX: 10,
+        style: {
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      },
+
+      fill: {
+        colors: [], // CHANGE
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0.5,
+          opacityFrom: 0.5,
+          opacityTo: 0.1,
+          stops: [0, 100],
+        },
+      },
     },
   });
 
   const [windChartData, setWindChartData] = useState({
-    series: [{ name: "Wind (km/s)", data: [] }],
+    series: [{ name: "Wind (km/s)", }],
     options: {
-      chart: { height: 350, type: "area" },
-      xaxis: { categories: [] },
-      yaxis: { title: { text: "Wind speed" } },
+      chart: {
+        height: 950,
+        type: "area",
+        animations: {
+          enabled: false,
+          easing: "easeinout",
+          speed: 800,
+        },
+        toolbar: {
+          show: false,
+        },
+        dropShadow: {
+          enabled: true,
+        },
+        zoom: {
+          enabled: false,
+        },
+      },
+      noData: {
+        text: "loading",
+      },
+      tooltip: {
+        marker: {
+          show: false,
+        },
+        fixed: {
+          enabled: false,
+          // position: "bottomLeft",
+          // offsetX: 20,
+          // offsetY: -20,
+        },
+      },
+
+      grid: {
+        show: false,
+      },
+
+      plotOptions: {
+        area: {
+          fillTo: "end",
+        },
+      },
+
+      yaxis: {
+        show: true,
+        labels: {
+          show: false,
+        },
+      },
+
+      stroke: {
+        width: 2,
+        colors: [], // CHANGE
+      },
+      series: [
+        {
+
+          data: setWindChartData, //CHANGE
+        },
+      ],
+
+      xaxis: {
+        categories: [],
+        axisBorder: {
+          height: 0,
+        },
+        axisTicks: {
+          height: 0,
+        },
+        labels: {
+          style: {
+            colors: [],
+          },
+        },
+      },
+
+      markers: {
+        colors: ["#fff"],
+        shape: "circle",
+        radius: 1,
+      },
+
+      dataLabels: {
+        enabled: true,
+        offsetY: -10,
+        style: {
+          fontSize: "10px",
+          fontFamily: "Arial, Helvetica, sans-serif",
+          fontWeight: 200,
+          colors: ["transparent"],
+        },
+        background: {
+          borderWidth: 0,
+        },
+      },
+
+      title: {
+        margin: 0,
+        offsetX: 10,
+        style: {
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      },
+
+      fill: {
+        colors: [], // CHANGE
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0.5,
+          opacityFrom: 0.5,
+          opacityTo: 0.1,
+          stops: [0, 100],
+        },
+      },
     },
   });
   const [feelChartData, setfeelChartData] = useState({
-    series: [{ name: "Feel (km/s)", data: [] }],
+    series: [{ name: "Feel (km/s)" }],
     options: {
-      chart: { height: 350, type: "area" },
-      xaxis: { categories: [] },
-      yaxis: { title: { text: "Feel" } },
+      chart: {
+        height: 950,
+        type: "area",
+        animations: {
+          enabled: false,
+          easing: "easeinout",
+          speed: 800,
+        },
+        toolbar: {
+          show: false,
+        },
+        dropShadow: {
+          enabled: true,
+        },
+        zoom: {
+          enabled: false,
+        },
+      },
+      noData: {
+        text: "loading",
+      },
+      tooltip: {
+        marker: {
+          show: false,
+        },
+        fixed: {
+          enabled: false,
+          // position: "bottomLeft",
+          // offsetX: 20,
+          // offsetY: -20,
+        },
+      },
+
+      grid: {
+        show: false,
+      },
+
+      plotOptions: {
+        area: {
+          fillTo: "end",
+        },
+      },
+
+      yaxis: {
+        show: true,
+        labels: {
+          show: false,
+        },
+      },
+
+      stroke: {
+        width: 2,
+        colors: [], // CHANGE
+      },
+      series: [
+        {
+
+          data: setfeelChartData, //CHANGE
+        },
+      ],
+
+      xaxis: {
+        categories: [],
+        axisBorder: {
+          height: 0,
+        },
+        axisTicks: {
+          height: 0,
+        },
+        labels: {
+          style: {
+            colors: [],
+          },
+        },
+      },
+
+      markers: {
+        colors: ["#fff"],
+        shape: "circle",
+        radius: 1,
+      },
+
+      dataLabels: {
+        enabled: true,
+        offsetY: -10,
+        style: {
+          fontSize: "10px",
+          fontFamily: "Arial, Helvetica, sans-serif",
+          fontWeight: 200,
+          colors: ["transparent"],
+        },
+        background: {
+          borderWidth: 0,
+        },
+      },
+
+      title: {
+        margin: 0,
+        offsetX: 10,
+        style: {
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      },
+
+      fill: {
+        colors: [], // CHANGE
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0.5,
+          opacityFrom: 0.5,
+          opacityTo: 0.1,
+          stops: [0, 100],
+        },
+      },
     },
   });
 
@@ -92,9 +547,17 @@ const WeatherPage = () => {
         const weatherDescriptions = dailyForecast.map(
           (data) => data.wind.speed
         );
+        const feels = dailyForecast.map((data) => data.main.feel_like)
         const dates = dailyForecast.map((data) =>
           new Date(data.dt_txt).toLocaleDateString()
         );
+        setfeelChartData({
+          series: [{ name: "Feels temperature (°C)", data: feels }],
+          options: {
+            ...feelChartData.options,
+            xaxis: { categories: dates },
+          },
+        });
 
         setTemperatureChartData({
           series: [{ name: "Temperature (°C)", data: temperatures }],
@@ -148,6 +611,15 @@ const WeatherPage = () => {
             height={350}
           />
         );
+        case "feels":
+          return (
+            <Chart
+              options={feelChartData.options}
+              series={feelChartData.series}
+              type="area"
+              height={350}
+            />
+          );
       case "temperature":
       default:
         return (
@@ -185,7 +657,7 @@ const WeatherPage = () => {
           <button className="mr-3" onClick={() => setSelectedChart("weather")}>
             Külək
           </button>
-          <button onClick={() => setSelectedChart("weather")}>
+          <button onClick={() => setSelectedChart("feels_like")}>
             Hiss edilən
           </button>
         </div>
