@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+
 import Chart from 'react-apexcharts';
 
 import WeatherHeader from '../WeatherHeader';
@@ -598,12 +599,7 @@ const WeatherPage = () => {
 
     fetchWeatherData();
 
-    series: [{ name: "Wind (km/s)", data: [] }],
-    options: {
-      chart: { height: 350, type: "area" },
-      xaxis: { categories: [] },
-      yaxis: { title: { text: "Wind speed" } },
-    },
+    
   });
 
   const fetchWeatherData = async () => {
