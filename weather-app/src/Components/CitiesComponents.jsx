@@ -5,6 +5,7 @@ import { cities } from "../Data/data";
 
 const CityComponent = () => {
  
+
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -15,11 +16,14 @@ const CityComponent = () => {
 
   // Şəhərə klikləmə funksiyası (hazırda sadəcə console-a yazacaq)
 
-  const handleCityClick = ({ city }) => {
-    console.log(city);
+  
+  const handleCityClick = ({city}) => {
+    
+    console.log(city)
 
     console.log(`Seçilmiş şəhər: ${city}`);
-    navigate(`${city}`);
+    navigate(`weather/${city}`);
+
     // Burada seçilmiş şəhərin hava məlumatlarını göstərə bilərsiniz
   };
 
@@ -43,7 +47,9 @@ const CityComponent = () => {
             </div>
             <button
               className="city-button"
-              onClick={() => handleCityClick({ city })} // Şəhər kliklənəndə handleCityClick çağrılır
+
+              onClick={() => handleCityClick({city})} // Şəhər kliklənəndə handleCityClick çağrılır
+
             >
               {city}
             </button>

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { cities } from '../Data/data';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -34,6 +35,7 @@ navigate(`/weather/${e.target.value}`)
  }
  </select>
 </div>
+
     </div>
   );
 }
