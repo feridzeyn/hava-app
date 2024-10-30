@@ -96,7 +96,7 @@ const WeatherPage = () => {
       series: [
         {
           name: "Temperature (°C)", 
-          data: setTemperatureChartData, //CHANGE
+          data: [], //CHANGE
         },
       ],
 
@@ -219,7 +219,7 @@ const WeatherPage = () => {
       series: [
         {
 
-          data: setHumidityChartData, //CHANGE
+          data:[], //CHANGE
         },
       ],
 
@@ -342,7 +342,7 @@ const WeatherPage = () => {
       series: [
         {
 
-          data: setWindChartData, //CHANGE
+          data: [], //CHANGE
         },
       ],
 
@@ -464,7 +464,7 @@ const WeatherPage = () => {
       series: [
         {
 
-          data: setfeelChartData, //CHANGE
+          data: [], //CHANGE
         },
       ],
 
