@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 
@@ -617,7 +617,7 @@ const WeatherPage = () => {
       const dates = dailyForecast.map(data =>
         new Date(data.dt_txt).toLocaleDateString()
       );
-
+      const feels = dailyForecast.map((data) => data.main.feels_like);
       setTemperatureChartData({
         series: [{ name: 'Temperature (°C)', data: temperatures }],
         options: {
@@ -625,7 +625,13 @@ const WeatherPage = () => {
           xaxis: { categories: dates },
         },
       });
-
+      setfeelChartData({
+        series: [{ name: "Feels temperature (°C)", data: feels }],
+        options: {
+          ...feelChartData.options,
+          xaxis: { categories: dates },
+        },
+      });
       setHumidityChartData({
         series: [{ name: 'Humidity (%)', data: humidities }],
         options: {
