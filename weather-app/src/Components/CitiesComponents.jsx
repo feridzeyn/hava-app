@@ -20,7 +20,7 @@ const CityComponent = () => {
     
     navigate(`weather/${city}`);
 
-    // Burada seçilmiş şəhərin hava məlumatlarını göstərə bilərsiniz
+    
 
   
   };

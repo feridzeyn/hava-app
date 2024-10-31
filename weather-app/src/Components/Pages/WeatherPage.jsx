@@ -17,8 +17,7 @@ const WeatherPage = () => {
 
   const [dayName, setDayName] = useState('')
   const [time, setTime] = useState('')
- const[defaultDay, setDefaultDay] = useState(0)
-
+  const [defaultDay, setDefaultDay] = useState(0)
   useEffect(function getDayName() {
 
     {
@@ -34,7 +33,7 @@ const WeatherPage = () => {
     }
   }, [forecastData])
 
-  
+
 
 
 
@@ -43,7 +42,7 @@ const WeatherPage = () => {
 
   const [temperatureChartData, setTemperatureChartData] = useState({
 
-    
+
     options: {
       chart: {
         height: 950,
@@ -101,7 +100,7 @@ const WeatherPage = () => {
       },
       series: [
         {
-          name: "Temperature (°C)", 
+          name: "Temperature (°C)",
           data: [], //CHANGE
         },
       ],
@@ -227,7 +226,7 @@ const WeatherPage = () => {
       series: [
         {
 
-          data:[], //CHANGE
+          data: [], //CHANGE
         },
       ],
 
@@ -541,7 +540,7 @@ const WeatherPage = () => {
     const fetchWeatherData = async () => {
       try {
         const forecastResponse = await getWeatherData(cityName)
-        
+
         // console.log(forecastResponse);
         setForecatHourly(forecastResponse.data.list);
 
@@ -598,7 +597,7 @@ const WeatherPage = () => {
 
     fetchWeatherData();
 
-    
+
   }), [cityName];
 
   const fetchWeatherData = async () => {
@@ -606,7 +605,7 @@ const WeatherPage = () => {
 
       const forecastResponse = await getWeatherData(cityName)
       // console.log(forecastResponse);
-    
+
 
       const dailyForecast = forecastResponse.data.list.filter(reading =>
         reading.dt_txt.includes("12:00:00")
@@ -676,15 +675,15 @@ const WeatherPage = () => {
           />
         );
 
-        case "feels":
-          return (
-            <Chart
-              options={feelChartData.options}
-              series={feelChartData.series}
-              type="area"
-              height={350}
-            />
-          );
+      case "feels":
+        return (
+          <Chart
+            options={feelChartData.options}
+            series={feelChartData.series}
+            type="area"
+            height={350}
+          />
+        );
 
       case "temperature":
       default:
@@ -699,9 +698,9 @@ const WeatherPage = () => {
     }
   };
 
-const selectDay = (index)=>{
-setDefaultDay(index)
-}
+  const selectDay = (index) => {
+    setDefaultDay(index)
+  }
 
   return (
     <div className="bg-[#283042]">
@@ -711,52 +710,60 @@ setDefaultDay(index)
         <CurrentInfo forecastData={forecastData} cityName={cityName} dayName={dayName} time={time} defaultDay={defaultDay} />
 
 
-        <div className="chart-controls text-white mb-[50px] mt-14">
+        <div className="chart-controls text-white mb-[50px] mt-14 " >
           <button
-            className="mr-3"
-            onClick={() => setSelectedChart("temperature")}
+
+            onClick={() =>
+              setSelectedChart("temperature")}
+          className= {`mr-3 ${selectedChart==="temperature" ? 'activeChart' : ''}`}
           >
-            Temperatur
+          Temperatur
+        </button>
+        <button  onClick={() =>
+              setSelectedChart("humidity")}
+          className= {`mr-3 ${selectedChart==="humidity" ? 'activeChart' : ''}`}>
+          Rütubət
+        </button>
+        <button  onClick={() =>
+              setSelectedChart("weather")}
+          className= {`mr-3 ${selectedChart==="weather" ? 'activeChart' : ''}`}>
+          Külək
+        </button>
+
+        <button  onClick={() =>
+              setSelectedChart("feels_like")}
+          className= {` ${selectedChart==="feels_like" ? 'activeChart' : ''}`}>
+
+          Hiss edilən
+        </button>
+      </div>
+
+
+      <div className="chart">{renderChart()}</div>
+
+      <div className="forecast flex justify-between">
+        {forecastData.map((day, index) => (
+
+
+          <button onClick={() => selectDay(index)} key={index} className={defaultDay === index ? 'activeDays' : undefined}>
+            {index === 0 ? <h3 className='text-white'>{dayName}</h3> : <h3 className='text-white'>{UpcomingDays()[index - 1]}</h3>}
+
+
+            <img
+              src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+              alt="Weather icon"
+            />
+            <h4 className='text-white'>
+              {Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}
+            </h4>
+
+
+
           </button>
-          <button className="mr-3" onClick={() => setSelectedChart("humidity")}>
-            Rütubət
-          </button>
-          <button className="mr-3" onClick={() => setSelectedChart("weather")}>
-            Külək
-          </button>
-
-          <button onClick={() => setSelectedChart("feels_like")}>
-
-            Hiss edilən
-          </button>
-        </div>
-
-
-        <div className="chart">{renderChart()}</div>
-
-        <div className="forecast flex justify-between">
-          {forecastData.map((day, index) => (
-
-
-            <button onClick={()=>selectDay(index)} key={index} className={defaultDay===index ? 'activeDays' : undefined}>
-              {index === 0 ? <h3 className='text-white'>{dayName}</h3> : <h3 className='text-white'>{UpcomingDays()[index - 1]}</h3>}
-
-
-              <img
-                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                alt="Weather icon"
-              />
-              <h4 className='text-white'>
-                {Math.round(day.main.temp_max)}/{Math.round(day.main.temp_min)}
-              </h4>
-
-
-             
-            </button>
-          ))}
-        </div>
+        ))}
       </div>
     </div>
+    </div >
   );
 };
 
