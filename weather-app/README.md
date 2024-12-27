@@ -1,8 +1,31 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hava Proqnozu Tətbiqi 🌤️
 
-Currently, two official plugins are available:
+Bu layihə şəhərlərin hava proqnozunu göstərmək üçün hazırlanmış bir React tətbiqidir. Tətbiqdə xəritə mövcuddur və xəritədə şəhərlərə tıklayaraq həmin şəhərə aid hava proqnozunu öyrənə bilərsiniz.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Xüsusiyyətlər 🚀
+Canlı Hava Məlumatları: Xəritədə hər hansı bir şəhərə tıkladıqda, o şəhərin aktual hava proqnozu göstərilir.
+Xəritə Tabanlı İnteraktivlik: Şəhərləri xəritə üzərindən seçmək imkanı.
+Müasir Dizayn: Sadə və istifadəçi dostu interfeys.
+API İnteqrasiyası: Hava məlumatları üçün OpenWeatherMap API istifadə olunur.
+
+Quraşdırma və İstifadə 🛠️
+Tətbiqi öz kompüterinizdə işə salmaq üçün aşağıdakı addımları izləyin:
+
+
+Addımlar 
+
+Layihəni Klonlayın:
+
+Kodu kopyala
+git clone https://github.com/feridzeyn/hava-app.git
+
+cd weather-app
+
+Lazımi Paketləri Yükləyin: npm install
+
+Tətbiqi İşə Salın:
+
+npm start
+
+
